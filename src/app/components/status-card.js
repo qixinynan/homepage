@@ -1,8 +1,8 @@
-import H3 from "../components/h3";
-import Card from "../components/card";
-import TextMd from "../components/text-md";
+import H3 from "./common/h3";
+import Card from "./common/card";
+import TextMd from "./common/text-md";
 
-export default function UpdatesCard({ time, title, desc }) {
+export default function StatusCard({ time, title, desc }) {
   return (
     <Card>
       <TextMd>
