@@ -2,9 +2,9 @@ import H3 from "./common/h3";
 import Card from "./common/card";
 import TextMd from "./common/text-md";
 
-export default function StatusCard({ time, title, desc }) {
+export default function StatusCard({ time, title, desc, onClick, className }) {
   return (
-    <Card>
+    <Card onClick={onClick} className={className}>
       <TextMd>
         <span className="">{time}, </span>
         <span className="font-bold">{title}</span>

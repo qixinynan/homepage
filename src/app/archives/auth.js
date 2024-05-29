@@ -29,7 +29,6 @@ export default function Auth() {
 
   const click = () => {
     const auth = SHA256(password).toString("hex");
-    console.log(auth);
     const expires = new Date();
     expires.setFullYear(expires.getFullYear() + 1);
 
