@@ -23,6 +23,7 @@ export default async function reuqest({ url, method = 'GET', headers = {}, param
   console.log(body);
   return await fetch(BASEURL + url, {
     method: method,
+    mode: 'cors',
     headers: headers,
     body: JSON.stringify(body)
   })
