@@ -15,3 +15,8 @@ export async function sendComment(username, content) {
   })
   return res;
 }
+
+export async function deleteComment(id) {
+  const res = await del(`/comments/${id}`)
+  return res;
+}
