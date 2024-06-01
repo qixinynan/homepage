@@ -4,19 +4,14 @@ import Input from "../components/common/input"
 import Button from "../components/common/button"
 import { useState } from "react";
 import cookies from 'react-cookies'
+import { checkAuth } from "../api/archives";
 
 
 const { SHA256 } = require("sha2");
 
 
-export function checkAuth() {
-  const auth = cookies.load("auth");
-  if (auth === "11d4ddc357e0822968dbfd226b6e1c2aac018d076a54da4f65e1dc8180684ac3") {
-    return true;
-  }
-  else {
-    return false;
-  }
+export async function isAuth() {
+  return await checkAuth();
 }
 
 export function clearAuth() {

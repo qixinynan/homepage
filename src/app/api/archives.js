@@ -11,6 +11,22 @@ export async function deleteArchive(id) {
   return res;
 }
 
+/**
+ * 
+ * @returns {boolean} b
+ */
+export async function checkAuth() {
+  const res = await get('/archives/auth');
+  const data = await res.json();
+  console.log("Auth result is", data.code)
+  if (data.code == 200) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
 export async function addArchive(name, desc) {
   const res = await post(`/archives/`, {}, {
     body: {
