@@ -1,4 +1,5 @@
 import config from "./config"
+import Toastify from 'toastify-js'
 
 const BASEURL = config.baseUrl;
 /**
@@ -20,15 +21,36 @@ export default async function reuqest({ url, method = 'GET', headers = {}, param
   headers['Accept'] = 'application/json'
   headers['Content-Type'] = 'application/json'
 
-  console.log(body);
-  return await fetch(BASEURL + url, {
-    method: method,
-    credentials: 'include',
-    mode: 'cors',
-    headers: headers,
-    body: JSON.stringify(body)
+  return new Promise((resolve, reject) => {
+    fetch(BASEURL + url, {
+      method: method,
+      credentials: 'include',
+      mode: 'cors',
+      headers: headers,
+      body: JSON.stringify(body)
+    }).then(async (res) => {
+      const data = await res.json();
+      console.log("request data", data)
+      if (data.code == 200) {
+        resolve(data);
+      }
+      else {
+        console.log("REJC")
+        Toastify({
+          text: data.msg,
+          style: {
+            background: "red",
+          },
+          duration: 3000
+        }).showToast();
+        resolve(data)
+      }
+    }).catch(res => {
+      reject(res);
+    })
   })
 }
+
 
 export async function get(url, params = {}, { headers = {} } = {}) {
   console.log('headers', headers)

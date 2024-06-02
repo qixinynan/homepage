@@ -1,9 +1,10 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
+import "toastify-js/src/toastify.css"
+import { Inter, Noto_Sans_SC } from 'next/font/google'
 import Header from './components/header/header'
 import Footer from './components/footer'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Noto_Sans_SC({ subsets: ['latin'], weight: ["300"] })
 
 export const metadata = {
   title: "七夕泥の网站 - 七夕泥向世界分享！",

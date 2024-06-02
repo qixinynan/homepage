@@ -234,6 +234,11 @@
   dependencies:
     glob "7.1.7"
 
+"@next/font@^14.2.3":
+  version "14.2.3"
+  resolved "https://registry.npmjs.org/@next/font/-/font-14.2.3.tgz#7b2e868a960cbe089f825b2e1e09e2933a04b9dc"
+  integrity sha512-u35UstQmvl3Yrvv2MOi6RcXMH3xDtmWTXcvkYcC/vCZHLqj/5JQ5UyFRf5saDWxFlZIkEh8HCzwNGoiHIr1/NQ==
+
 "@next/swc-darwin-arm64@13.4.3":
   version "13.4.3"
   resolved "https://registry.npmjs.org/@next/swc-darwin-arm64/-/swc-darwin-arm64-13.4.3.tgz#2d6c99dd5afbcce37e4ba0f64196317a1259034d"
@@ -2601,6 +2606,11 @@ to-regex-range@^5.0.1:
   integrity sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==
   dependencies:
     is-number "^7.0.0"
+
+toastify-js@^1.12.0:
+  version "1.12.0"
+  resolved "https://registry.npmjs.org/toastify-js/-/toastify-js-1.12.0.tgz#cc1c4f5c7e7380e854e20bedceb51980ea29f64d"
+  integrity sha512-HeMHCO9yLPvP9k0apGSdPUWrUbLnxUKNFzgUoZp1PHCLploIX/4DSQ7V8H25ef+h4iO9n0he7ImfcndnN6nDrQ==
 
 ts-interface-checker@^0.1.9:
   version "0.1.13"

@@ -2,8 +2,7 @@ import reuqest, { del, get, post, put } from "@/app/common/request";
 
 export async function getArchives() {
   const res = await get('/archives', {})
-  const json = await res.json();
-  return Response.json(json);
+  return res;
 }
 
 export async function deleteArchive(id) {
@@ -16,8 +15,7 @@ export async function deleteArchive(id) {
  * @returns {boolean} b
  */
 export async function checkAuth() {
-  const res = await get('/archives/auth');
-  const data = await res.json();
+  const data = await get('/archives/auth');
   console.log("Auth result is", data.code)
   if (data.code == 200) {
     return true;
@@ -35,6 +33,16 @@ export async function addArchive(name, desc) {
     }
   })
   return res;
+}
+
+export async function rateArchive(id, content, rate) {
+  const res = await post(`/archives/${id}/rate`, {}, {
+    body: {
+      content: content,
+      rate: rate
+    }
+  })
+  return res
 }
 
 export async function editArchive(id, name, desc) {

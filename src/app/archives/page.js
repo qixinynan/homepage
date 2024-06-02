@@ -10,7 +10,9 @@ import Editor from "./editor";
 import Add from './add'
 import Button from "../components/common/button";
 import { getArchives } from "../api/archives";
-
+import ArchiveCard from "./archive-card";
+import Dialog from "../components/dialog";
+import Rate from "./rate";
 
 export default function Archives() {
   const [hasAuth, setHasAuth] = useState(undefined);
@@ -56,23 +58,38 @@ export function ArchivesView() {
   const [archives, setArchives] = useState([])
   const [selectedId, setSelectedId] = useState(-1)
   const [showAdd, setShowAdd] = useState(false)
+  const [showEditor, setShowEditor] = useState(false)
+  const [showRate, setShowRate] = useState(false)
+  const notify = () => {
+    console.log("12")
+  }
+
   useEffect(() => {
     const fetchArchieves = async () => {
       const res = await getArchives();
-      const data = (await res.json()).data
-      console.log("data is ", data);
+      console.log("page get", res)
+      const data = res.data
       data.reverse()
       setArchives(data)
+      notify();
     }
     fetchArchieves();
   }, [])
   return (<div className="space-y-3 mx-10 mt-3">
-    <Button onClick={() => setShowAdd(true)}>添加</Button>
+    <Rate active={showRate} data={archives[selectedId]} onClose={() => setShowRate(false)}></Rate>
     <Add active={showAdd} onClose={() => setShowAdd(false)} ></Add>
-    <Editor active={selectedId != -1} data={archives[selectedId]} onClose={() => setSelectedId(-1)}></Editor>
+    <Editor active={showEditor} data={archives[selectedId]} onClose={() => { setShowEditor(false); setSelectedId(-1) }}></Editor>
+
+    <Button onClick={() => setShowAdd(true)}>添加</Button>
     <H2>我的档案</H2>
     {archives.map((archive, i) => (
-      <StatusCard className="cursor-pointer" onClick={() => setSelectedId(i)} key={i} title={archive.name} time={formatDate(archive.createdAt)} desc={archive.description}></StatusCard>
+      <ArchiveCard
+        onClick={() => { setSelectedId(i); setShowEditor(true) }}
+        key={i}
+        onRate={() => { setSelectedId(i); setShowRate(true) }}
+        title={archive.name}
+        rate={archive.rate}
+        time={formatDate(archive.createdAt)} desc={archive.description}></ArchiveCard>
     ))}
     <Link onClick={clearAuth} className="float-right px-10 cursor-pointer">清除验证</Link>
   </div>)

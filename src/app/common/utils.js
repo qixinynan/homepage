@@ -5,11 +5,11 @@ export function formatDate(dateString) {
   const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
   if (diffDays === 0) {
-    return `今天 ${date.getHours()}:${date.getMinutes()}`;
+    return `今天 ${date.getHours().toString().padStart(2, "0")}:${date.getMinutes().toString().padStart(2, "0")}`;
   } else if (diffDays === 1) {
-    return `昨天 ${date.getHours()}:${date.getMinutes()}`;
+    return `昨天 ${date.getHours().toString().padStart(2, "0")}:${date.getMinutes().toString().padStart(2, "0")}`;
   } else if (diffDays <= 7) {
-    return `${diffDays}天前 ${date.getHours()}:${date.getMinutes()}`;
+    return `${diffDays}天前 ${date.getHours().toString().padStart(2, "0")}:${date.getMinutes().toString().padStart(2, "0")}`;
   } else {
     return getTimeString(date.valueOf())
   }
@@ -22,6 +22,6 @@ export function formatDate(dateString) {
  */
 export function getTimeString(timestamp) {
   const date = new Date(timestamp)
-  return `${date.getFullYear()}-${date.getMonth() + 1
-    }-${date.getDate()} ${date.getHours()}:${date.getMinutes()}`;
+  return `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, "0")
+    }-${date.getDate().toString().padStart(2, "0")} ${date.getHours().toString().padStart(2, "0")}:${date.getMinutes().toString().padStart(2, "0")}`;
 }

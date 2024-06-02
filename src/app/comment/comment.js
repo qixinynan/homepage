@@ -25,7 +25,7 @@ export default function Comment() {
   useEffect(() => {
     const fetchComments = async () => {
       const res = await getComments();
-      const data = (await res.json()).data
+      const data = res.data
       data.reverse()
       console.log("e", data);
       setComments(data)
