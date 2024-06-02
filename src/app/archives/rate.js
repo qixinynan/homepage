@@ -4,12 +4,14 @@ import Input from "../components/common/input"
 import { useState } from "react"
 import CardButton from "../components/common/card-btn"
 import { rateArchive } from "../api/archives"
-export default function Rate({ active, data, onClose }) {
+export default function Rate({ active, data, onClose, onRate }) {
   const [content, setContent] = useState("")
   const [rate, setRate] = useState("");
 
-  const clickRate = () => {
-    rateArchive(data.id, content, parseInt(rate))
+  const clickRate = async () => {
+    await rateArchive(data.id, content, String(rate))
+    onRate();
+    onClose();
   }
 
   return <Dialog active={active} onClose={onClose}>

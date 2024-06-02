@@ -4,7 +4,7 @@ import { Inter, Noto_Sans_SC } from 'next/font/google'
 import Header from './components/header/header'
 import Footer from './components/footer'
 
-const inter = Noto_Sans_SC({ subsets: ['latin'], weight: ["400"] })
+const inter = Noto_Sans_SC({ subsets: ['latin'], weight: ["300", "400", "700", "900"] })
 
 export const metadata = {
   title: "七夕泥の网站 - 七夕泥向世界分享！",

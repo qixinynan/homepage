@@ -60,23 +60,20 @@ export function ArchivesView() {
   const [showAdd, setShowAdd] = useState(false)
   const [showEditor, setShowEditor] = useState(false)
   const [showRate, setShowRate] = useState(false)
-  const notify = () => {
-    console.log("12")
+  const fetchArchieves = async () => {
+    const res = await getArchives();
+    console.log("page get", res)
+    const data = res.data
+    data.reverse()
+    setArchives(data)
+
   }
 
   useEffect(() => {
-    const fetchArchieves = async () => {
-      const res = await getArchives();
-      console.log("page get", res)
-      const data = res.data
-      data.reverse()
-      setArchives(data)
-      notify();
-    }
     fetchArchieves();
   }, [])
   return (<div className="space-y-3 mx-10 mt-3">
-    <Rate active={showRate} data={archives[selectedId]} onClose={() => setShowRate(false)}></Rate>
+    <Rate active={showRate} data={archives[selectedId]} onRate={fetchArchieves} onClose={() => setShowRate(false)}></Rate>
     <Add active={showAdd} onClose={() => setShowAdd(false)} ></Add>
     <Editor active={showEditor} data={archives[selectedId]} onClose={() => { setShowEditor(false); setSelectedId(-1) }}></Editor>
 
