@@ -12,7 +12,7 @@ export default function Like() {
   useEffect(() => {
     getLikeCount();
   }, [])
-  return <Button color="pink" onClick={() => {
+  return <Button className="block mx-auto my-10" color="pink" onClick={() => {
     confetti({
       particleCount: 150,
       spread: 60
