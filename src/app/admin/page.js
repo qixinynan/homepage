@@ -11,7 +11,6 @@ export default function Admin() {
     const res = await getComments();
     const data = (await res.json()).data
     data.reverse()
-    console.log("e", data);
     setComments(data)
   }
   useEffect(() => {

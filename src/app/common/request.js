@@ -30,12 +30,10 @@ export default async function reuqest({ url, method = 'GET', headers = {}, param
       body: JSON.stringify(body)
     }).then(async (res) => {
       const data = await res.json();
-      console.log("request data", data)
       if (data.code == 200) {
         resolve(data);
       }
       else {
-        console.log("REJC")
         Toastify({
           text: data.msg,
           style: {
@@ -53,7 +51,6 @@ export default async function reuqest({ url, method = 'GET', headers = {}, param
 
 
 export async function get(url, params = {}, { headers = {} } = {}) {
-  console.log('headers', headers)
   return reuqest({
     url: url,
     method: 'GET',
@@ -63,7 +60,6 @@ export async function get(url, params = {}, { headers = {} } = {}) {
 }
 
 export async function del(url, params = {}, { headers = {} } = {}) {
-  console.log('headers', headers)
   return reuqest({
     url: url,
     method: 'DELETE',
@@ -73,7 +69,6 @@ export async function del(url, params = {}, { headers = {} } = {}) {
 }
 
 export async function put(url, params = {}, { headers = {}, body = {} } = {}) {
-  console.log('headers', headers)
   return reuqest({
     url: url,
     method: 'PUT',
@@ -83,7 +78,6 @@ export async function put(url, params = {}, { headers = {}, body = {} } = {}) {
   })
 }
 export async function post(url, params = {}, { headers = {}, body = {} } = {}) {
-  console.log('body', body)
   return reuqest({
     url: url,
     method: 'POST',

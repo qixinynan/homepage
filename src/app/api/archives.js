@@ -16,7 +16,6 @@ export async function deleteArchive(id) {
  */
 export async function checkAuth() {
   const data = await get('/archives/auth');
-  console.log("Auth result is", data.code)
   if (data.code == 200) {
     return true;
   }

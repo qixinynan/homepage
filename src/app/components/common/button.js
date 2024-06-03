@@ -5,6 +5,9 @@ export default function Button({ children, className, onClick, color }) {
     case 'red':
       colorStyle = "bg-red-700"
       break;
+    case 'pink':
+      colorStyle = "bg-red-400"
+      break
     default:
       colorStyle = "bg-neutral-700";
   }

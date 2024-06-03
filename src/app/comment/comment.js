@@ -27,7 +27,6 @@ export default function Comment() {
       const res = await getComments();
       const data = res.data
       data.reverse()
-      console.log("e", data);
       setComments(data)
     }
     fetchComments();

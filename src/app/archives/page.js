@@ -19,7 +19,6 @@ export default function Archives() {
   useEffect(() => {
     isAuth().then((n) => {
       setHasAuth(n)
-      console.log("set to", n)
     })
   }, [])
   if (hasAuth === false) {
@@ -62,7 +61,6 @@ export function ArchivesView() {
   const [showRate, setShowRate] = useState(false)
   const fetchArchieves = async () => {
     const res = await getArchives();
-    console.log("page get", res)
     const data = res.data
     data.reverse()
     setArchives(data)
