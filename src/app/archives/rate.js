@@ -4,11 +4,21 @@ import Input from "../components/common/input"
 import { useState } from "react"
 import CardButton from "../components/common/card-btn"
 import { rateArchive } from "../api/archives"
+import Toastify from 'toastify-js'
 export default function Rate({ active, data, onClose, onRate }) {
   const [content, setContent] = useState("")
   const [rate, setRate] = useState("");
 
   const clickRate = async () => {
+    if (!rate || parseInt(rate) > 10 || parseInt(rate) <= 0) {
+      Toastify({
+        text: "分数必须是1～10的数字",
+        style: {
+          background: "red",
+        },
+      }).showToast();
+      return;
+    }
     await rateArchive(data.id, content, String(rate))
     onRate();
     onClose();
