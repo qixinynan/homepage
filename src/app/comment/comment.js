@@ -37,7 +37,7 @@ export default function Comment() {
       <div className="space-y-6">
         <div>
           <label className="mr-1">昵称:</label>
-          <Input value={username} onChange={(e) => { setUsername(e.target.value) }} required placeHolder="昵称"></Input>
+          <Input className="w-full" value={username} onChange={(e) => { setUsername(e.target.value) }} required placeHolder="昵称"></Input>
         </div>
         <div>
           <TextArea value={content} onChange={(e) => { setContent(e.target.value) }} required className="h-32" placeHolder="锐评の内容 (请勿过于激烈以至于七夕泥先生被吓死)">12</TextArea>
