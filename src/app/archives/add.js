@@ -5,10 +5,12 @@ import Input from "../components/common/input";
 import { addArchive } from "@/app/api/archives"
 import Dialog from "../components/dialog";
 import TextArea from "../components/common/textarea";
+import { useRouter } from "next/navigation";
 
 export default function Add({ active, onClose }) {
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
+  const router = useRouter()
   const clickAddArchive = async () => {
     await addArchive(name, desc);
     location.reload();

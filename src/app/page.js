@@ -11,7 +11,7 @@ export default function Home() {
     <Intro></Intro>
     <Like></Like>
     <Comment></Comment>
-    <section className="mx-3">
+    <section className="mt-3 mx-3">
       <H2>工具</H2>
       <a href="/tools/wrap">
         <CardButton>

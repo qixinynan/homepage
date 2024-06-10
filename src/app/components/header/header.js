@@ -2,8 +2,10 @@
 import NavItem from './nav-item'
 import Avatar from '../common/avatar'
 import MenuIcon from './menu-icon'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import MobileMenu from './mobile-menu'
+import { isLogined } from '@/app/common/utils'
+import { tryGetCurrentUser } from '@/app/api/accounts'
 
 
 export default function Header() {
@@ -14,12 +16,8 @@ export default function Header() {
       link: "/"
     },
     {
-      name: "最近动态",
-      link: "/recent"
-    },
-    {
-      name: "记录档案",
-      link: "/archives"
+      name: "动态",
+      link: "/activities"
     },
     {
       name: "博客们",
@@ -30,8 +28,12 @@ export default function Header() {
       link: "/about"
     },
   ]
+
+  const [accountName, setAccountName] = useState("点击登录");
+
   useEffect(() => {
     window.addEventListener('hashchange', () => setShowMobileMenu(location.hash === "#menu"))
+    tryGetCurrentUser().then(user => setAccountName(user.data.username));
   }, [])
 
   const closeMenu = () => {
@@ -52,6 +54,10 @@ export default function Header() {
           {headerData.map((e, i) => <NavItem key={i} href={e.link}>{e.name}</NavItem>)}
         </ul>
       </nav>
+      <a href='/account' className='text-sm hidden sm:inline-flex items-center space-x-2 group absolute right-20'>
+        <Avatar src='/images/unknown.jpeg' size={32}></Avatar>
+        <span>{accountName}</span>
+      </a>
     </header>
   )
 }

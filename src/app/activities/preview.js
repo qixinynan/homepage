@@ -1,5 +1,5 @@
-import H2 from "../../app/components/common/h2";
-import Card from "../../app/components/common/card";
+import H2 from "../components/common/h2";
+import Card from "../components/common/card";
 import RecentCard from "../components/status-card";
 import Link from "../components/common/link";
 

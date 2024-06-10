@@ -14,10 +14,14 @@ export default function StatusCard({ time, title, desc, onClick, className }) {
             <span className="italic text-gray-500">{desc}</span>
           </>
         }
-        {/* <span className="">三天前, </span>
-        <span className="font-bold">开始制作个人主页: </span>
-        <span className="italic text-gray-500">正在加紧开发自己的个人网站啦！之前的博客似乎要荒废掉了，这次选用了React + Next，预备部署到Vercel上！</span> */}
       </TextMd>
+      <div className="mt-5 text-xs">回复：
+        <p className="indent-5">
+          <span className="text-blue-500">匿名人士</span>
+          <span>:</span>
+          <span className="ml-2">我不这么喜欢</span>
+        </p>
+      </div>
     </Card>
   )
 }

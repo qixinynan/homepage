@@ -6,11 +6,13 @@ import Input from "../components/common/input";
 import { getTimeString } from "../common/utils";
 import Dialog from "../components/dialog";
 import TextArea from "../components/common/textarea";
+import { useRouter } from "next/navigation";
 
 export default function Editor({ active, data, onClose }) {
   const [name, setName] = useState('');
   const [desc, setDesc] = useState('')
   const [createdAt, setCreatedAt] = useState(Date.now())
+  const router = useRouter()
   useEffect(() => {
     if (data) {
       setName(data.name);
@@ -20,7 +22,7 @@ export default function Editor({ active, data, onClose }) {
   }, [data])
   const clickDeleteArchive = async () => {
     await deleteArchive(data.id)
-    location.reload();
+    location.reload();;
   }
   const clickEditArchive = async () => {
     await editArchive(data.id, name, desc)

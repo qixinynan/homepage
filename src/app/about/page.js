@@ -1,5 +1,5 @@
 import Intro from "./intro";
-import RecentPreview from "../recent/preview";
+import RecentPreview from "../activities/preview";
 import ProjectsPreview from "../projects/preview";
 
 export default function About() {

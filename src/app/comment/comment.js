@@ -8,27 +8,38 @@ import Input from "../components/common/input";
 import TextArea from "../components/common/textarea";
 import CardButton from "../components/common/card-btn";
 import { getComments, sendComment } from "../api/comment";
-import { getTimeString } from "../common/utils";
+import { getTimeString, isLogined } from "../common/utils";
+import { useRouter } from 'next/navigation'
+import toast from "../common/toast";
 export default function Comment() {
   const [showComment, setShowComment] = useState(false)
-  const [username, setUsername] = useState('');
   const [content, setContent] = useState('');
   const [comments, setComments] = useState([])
-  const cliclSendComment = async () => {
-    if (username == '' || content == '') {
-      alert("请检查是否填写完成")
+  const router = useRouter()
+  const clickAddComment = () => {
+    if (isLogined()) {
+      setShowComment(true)
+    }
+    else {
+      router.push("/account/login")
+    }
+  }
+  const fetchComments = async () => {
+    const res = await getComments();
+    const data = res.data
+    data.reverse()
+    setComments(data)
+  }
+  const clickSendComment = async () => {
+    if (content == '') {
+      toast("请检查是否填写完整", "warning")
       return;
     }
-    await sendComment(username, content)
-    location.reload();
+    await sendComment(content)
+    fetchComments();
+    setShowComment(false);
   }
   useEffect(() => {
-    const fetchComments = async () => {
-      const res = await getComments();
-      const data = res.data
-      data.reverse()
-      setComments(data)
-    }
     fetchComments();
   }, [])
   return <div className="mt-5 mx-3">
@@ -36,21 +47,17 @@ export default function Comment() {
       <H2>宣布锐评！</H2>
       <div className="space-y-6">
         <div>
-          <label className="mr-1">昵称:</label>
-          <Input className="w-full" value={username} onChange={(e) => { setUsername(e.target.value) }} required placeHolder="昵称"></Input>
-        </div>
-        <div>
           <TextArea value={content} onChange={(e) => { setContent(e.target.value) }} required className="h-32" placeHolder="锐评の内容 (请勿过于激烈以至于七夕泥先生被吓死)">12</TextArea>
         </div>
-        <CardButton onClick={cliclSendComment}>锐评！</CardButton>
+        <CardButton onClick={clickSendComment}>锐评！</CardButton>
       </div>
     </Dialog>
     <H2>锐评七夕泥：</H2>
-    <CardButton onClick={() => { setShowComment(true) }}>添加评论</CardButton>
+    <CardButton onClick={clickAddComment}>添加评论</CardButton>
     {comments.map((comment, i) => (
       <Card key={i} className="p-3 mt-3">
-        <p className="text-slate-700 text-sm">{comment.username}：</p>
-        <p className="indent-4 mt-1 text-sm">{comment.content}</p>
+        <span className="text-blue-500 text-sm">{comment.author.username}：</span>
+        <span className="indent-4 mt-1 text-sm">{comment.content}</span>
         <p className="text-end text-xs text-slate-400">{getTimeString(comment.createdAt)}</p>
       </Card>
     ))}

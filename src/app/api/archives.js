@@ -1,7 +1,7 @@
 import reuqest, { del, get, post, put } from "@/app/common/request";
 
 export async function getArchives() {
-  const res = await get('/archives', {})
+  const res = await get('/archives')
   return res;
 }
 
@@ -25,7 +25,7 @@ export async function checkAuth() {
 }
 
 export async function addArchive(name, desc) {
-  const res = await post(`/archives/`, {}, {
+  const res = await post(`/archives/`, {
     body: {
       "name": name,
       "description": desc
@@ -35,7 +35,7 @@ export async function addArchive(name, desc) {
 }
 
 export async function rateArchive(id, content, rate) {
-  const res = await post(`/archives/${id}/rate`, {}, {
+  const res = await post(`/archives/${id}/rate`, {
     body: {
       content: content,
       rate: rate
@@ -45,7 +45,7 @@ export async function rateArchive(id, content, rate) {
 }
 
 export async function editArchive(id, name, desc) {
-  const res = await put(`/archives/${id}`, {}, {
+  const res = await put(`/archives/${id}`, {
     body: {
       "name": name,
       "description": desc

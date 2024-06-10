@@ -5,24 +5,22 @@ import Card from "../components/common/card";
 import { useEffect, useState } from "react"
 import { getTimeString } from "../common/utils";
 import Button from "../components/common/button";
-import { isAuth } from "../archives/auth";
 import Input from "../components/common/input";
 import TextArea from "../components/common/textarea";
 import CardButton from "../components/common/card-btn";
 import { postBlog } from "../api/blog";
-import Toastify from 'toastify-js'
+import Link from "../components/common/link";
+import toast from "../common/toast";
+import { getCurrentUser } from "../api/accounts";
 
 export default function Admin() {
   const [hasAuth, setHasAuth] = useState(undefined)
   useEffect(() => {
-    isAuth().then((n) => {
-      setHasAuth(n)
+    getCurrentUser().then((data) => {
+      setHasAuth(data.data.role == "ADMIN")
     })
   })
-  if (hasAuth === false) {
-    return <Auth></Auth>
-  }
-  else {
+  if (hasAuth === true) {
     return <AdminView></AdminView>
   }
 }
@@ -44,7 +42,10 @@ export function AdminView() {
     await fetchComments();
   }
 
-  return <div className="mt-5">
+  return <div className="mt-5 space-y-5">
+    <section>
+      <Link href="/archives">档案</Link>
+    </section>
     <section>
       <H2>评论管理</H2>
       {comments.map((comment, i) => (
@@ -65,9 +66,7 @@ function BlogAdmin() {
   const [content, setContent] = useState("")
   const clickPostBlog = async () => {
     await postBlog(title, content);
-    Toastify({
-      text: "发布成功",
-    }).showToast();
+    toast("发布成功");
   }
   return (<section className="mt-10">
     <H2>博客管理</H2>

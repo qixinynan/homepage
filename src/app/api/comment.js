@@ -1,14 +1,13 @@
 import { del, get, post, put } from "@/app/common/request";
 
 export async function getComments() {
-  const res = await get('/comments', {})
+  const res = await get('/comments')
   return res
 }
 
-export async function sendComment(username, content) {
-  const res = await post(`/comments/`, {}, {
+export async function sendComment(content) {
+  const res = await post(`/comments/`, {
     body: {
-      "username": username,
       "content": content
     }
   })

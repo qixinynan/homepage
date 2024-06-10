@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import H2 from "../components/common/h2";
 import StatusCard from "../components/status-card";
-import Auth, { isAuth, clearAuth } from "./auth";
 import cookies from 'react-cookies'
 import Link from "../components/common/link";
 import { formatDate } from "../common/utils";
@@ -13,18 +12,22 @@ import { getArchives } from "../api/archives";
 import ArchiveCard from "./archive-card";
 import Dialog from "../components/dialog";
 import Rate from "./rate";
+import { getCurrentUser } from "../api/accounts";
+import { useRouter } from "next/navigation";
 
 export default function Archives() {
   const [hasAuth, setHasAuth] = useState(undefined);
+  const router = useRouter();
   useEffect(() => {
-    isAuth().then((n) => {
-      setHasAuth(n)
+    getCurrentUser().then((data) => {
+      console.log(data, data.data.role)
+      setHasAuth(data.data.role == "ADMIN")
+      // if (!hasAuth) {
+      //   router.push('/')
+      // }
     })
   }, [])
-  if (hasAuth === false) {
-    return <Auth></Auth>
-  }
-  else if (hasAuth === true) {
+  if (hasAuth === true) {
     return <ArchivesView></ArchivesView>
   }
   else {
@@ -86,6 +89,5 @@ export function ArchivesView() {
         rate={archive.rate}
         time={formatDate(archive.createdAt)} desc={archive.description}></ArchiveCard>
     ))}
-    <Link onClick={clearAuth} className="float-right px-10 cursor-pointer">清除验证</Link>
   </div>)
 }

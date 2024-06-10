@@ -1,13 +1,15 @@
 import config from "./config"
-import Toastify from 'toastify-js'
+import toast from "./toast";
+import { isClient } from "./utils";
+
+const defaultOpt = { params: {}, headers: {}, body: {}, loginRedirect: true }
 
 const BASEURL = config.baseUrl;
-/**
- * 
- * @param {{url: string, method: string, headers: Object, params: Object, body: Object}} param0
- */
-export default async function reuqest({ url, method = 'GET', headers = {}, params = {}, body }) {
-  // Parmas
+
+
+export default async function reuqest({ url, method = 'GET', opt = defaultOpt }) {
+  const { headers = {}, params = {}, body = {}, loginRedirect = {} } = opt;
+
   let dataStr = ''; //数据拼接字符串
   Object.keys(params).forEach(key => {
     dataStr += key + '=' + data[key] + '&';
@@ -21,26 +23,36 @@ export default async function reuqest({ url, method = 'GET', headers = {}, param
   headers['Accept'] = 'application/json'
   headers['Content-Type'] = 'application/json'
 
+  if (isClient()) {
+    const token = localStorage.getItem("token")
+    headers['Authorization'] = `Bearer ${token}`
+  }
+
+  let bodyStr = JSON.stringify(body)
+  if (method == 'GET' || method == 'DELETE') {
+    bodyStr = null;
+  }
+
   return new Promise((resolve, reject) => {
     fetch(BASEURL + url, {
       method: method,
       credentials: 'include',
       mode: 'cors',
       headers: headers,
-      body: JSON.stringify(body)
+      body: bodyStr
     }).then(async (res) => {
       const data = await res.json();
       if (data.code == 200) {
         resolve(data);
       }
+      else if (data.code == 401) {
+        if (loginRedirect) {
+          localStorage.removeItem("token");
+          location.href = "/account/login"
+        }
+      }
       else {
-        Toastify({
-          text: data.msg,
-          style: {
-            background: "red",
-          },
-          duration: 3000
-        }).showToast();
+        toast(data.msg, "danger");
         resolve(data)
       }
     }).catch(res => {
@@ -50,40 +62,34 @@ export default async function reuqest({ url, method = 'GET', headers = {}, param
 }
 
 
-export async function get(url, params = {}, { headers = {} } = {}) {
+export async function get(url, opt = defaultOpt) {
   return reuqest({
     url: url,
     method: 'GET',
-    params: params,
-    headers: headers,
+    opt
   })
 }
 
-export async function del(url, params = {}, { headers = {} } = {}) {
+export async function del(url, opt = defaultOpt) {
   return reuqest({
     url: url,
     method: 'DELETE',
-    params: params,
-    headers: headers,
+    opt
   })
 }
 
-export async function put(url, params = {}, { headers = {}, body = {} } = {}) {
+export async function put(url, opt = defaultOpt) {
   return reuqest({
     url: url,
     method: 'PUT',
-    params: params,
-    headers: headers,
-    body: body
+    opt
   })
 }
-export async function post(url, params = {}, { headers = {}, body = {} } = {}) {
+export async function post(url, opt = defaultOpt) {
   return reuqest({
     url: url,
     method: 'POST',
-    params: params,
-    headers: headers,
-    body: body
+    opt
   })
 }
 
