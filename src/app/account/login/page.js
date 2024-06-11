@@ -46,3 +46,7 @@ export default function Login() {
     </div>
   </div >)
 }
+
+export const metadata = {
+  title: "登录 - 七夕泥の网站",
+};

@@ -81,3 +81,7 @@ function BlogAdmin() {
     <CardButton onClick={clickPostBlog}>发布</CardButton>
   </section>)
 }
+
+export const metadata = {
+  title: "管理 - 七夕泥の网站",
+};

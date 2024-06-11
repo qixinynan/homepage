@@ -1,20 +1,16 @@
 'use client';
 import { useEffect, useState } from "react";
 import H2 from "../components/common/h2";
-import StatusCard from "../components/status-card";
-import cookies from 'react-cookies'
-import Link from "../components/common/link";
+
 import { formatDate } from "../common/utils";
 import Editor from "./editor";
 import Add from './add'
 import Button from "../components/common/button";
 import { getArchives } from "../api/archives";
 import ArchiveCard from "./archive-card";
-import Dialog from "../components/dialog";
 import Rate from "./rate";
 import { getCurrentUser } from "../api/accounts";
 import { useRouter } from "next/navigation";
-
 export default function Archives() {
   const [hasAuth, setHasAuth] = useState(undefined);
   const router = useRouter();
@@ -22,9 +18,9 @@ export default function Archives() {
     getCurrentUser().then((data) => {
       console.log(data, data.data.role)
       setHasAuth(data.data.role == "ADMIN")
-      // if (!hasAuth) {
-      //   router.push('/')
-      // }
+      if (!hasAuth) {
+        router.push('/')
+      }
     })
   }, [])
   if (hasAuth === true) {
@@ -91,3 +87,7 @@ export function ArchivesView() {
     ))}
   </div>)
 }
+
+export const metadata = {
+  title: "档案 - 七夕泥の网站",
+};

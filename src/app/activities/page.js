@@ -6,3 +6,7 @@ export default function Recent() {
     <Card className="mt-10">该页面还未完成</Card>
   </div>;
 }
+
+export const metadata = {
+  title: "动态 - 七夕泥の网站",
+};

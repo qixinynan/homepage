@@ -44,3 +44,6 @@ export default function Register() {
     </div>
   </div >)
 }
+export const metadata = {
+  title: "注册 - 七夕泥の网站",
+};

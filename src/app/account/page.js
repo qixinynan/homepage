@@ -30,3 +30,8 @@ export default function Account() {
     </Container>
   )
 }
+
+
+export const metadata = {
+  title: "账号 - 七夕泥の网站",
+};

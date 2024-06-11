@@ -10,3 +10,7 @@ export default function NotFound() {
     </div>
   )
 }
+
+export const metadata = {
+  title: "找不到页面 - 七夕泥の网站",
+}

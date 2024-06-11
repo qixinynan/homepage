@@ -13,3 +13,7 @@ export default function About() {
     </main>
   )
 }
+
+export const metadata = {
+  title: "关于 - 七夕泥の网站",
+};
