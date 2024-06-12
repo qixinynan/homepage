@@ -12,7 +12,9 @@ function MobileMenuItem({ children, href }) {
 export default function MobileMenu({ active, onClose, data }) {
   const [accountName, setAccountName] = useState("点击登录");
   useEffect(() => {
-    tryGetCurrentUser().then(user => setAccountName(user.data.username));
+    tryGetCurrentUser().then(res => {
+      if (res.code == 200) setAccountName(res.data.username)
+    });
   }, [])
   return <div className='block sm:hidden'>
     {/* <div onClick={onClose} className={`fixed w-screen h-screen top-0 left-0 bg-black opacity-70 z-30 ${active ? '' : 'hidden'}`}></div> */}

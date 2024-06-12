@@ -1,6 +1,8 @@
 import config from "./config"
 import toast from "./toast";
 import { isClient } from "./utils";
+import reactCookies from 'react-cookies';
+import { cookies } from "next/dist/client/components/headers"
 
 const defaultOpt = { params: {}, headers: {}, body: {}, loginRedirect: true }
 
@@ -23,10 +25,15 @@ export default async function reuqest({ url, method = 'GET', opt = defaultOpt })
   headers['Accept'] = 'application/json'
   headers['Content-Type'] = 'application/json'
 
+  let token = "";
   if (isClient()) {
-    const token = localStorage.getItem("token")
-    headers['Authorization'] = `Bearer ${token}`
+    token = reactCookies.load("token")
   }
+  else {
+    const tokenCookie = cookies().get("token");
+    token = tokenCookie ? tokenCookie.value : "";
+  }
+  headers['Authorization'] = `Bearer ${token}`
 
   let bodyStr = JSON.stringify(body)
   if (method == 'GET' || method == 'DELETE') {
@@ -47,14 +54,16 @@ export default async function reuqest({ url, method = 'GET', opt = defaultOpt })
       }
       else if (data.code == 401) {
         if (loginRedirect) {
-          localStorage.removeItem("token");
-          location.href = "/account/login"
+          if (isClient()) {
+            token = reactCookies.remove("token")
+            location.href = "/account/login"
+          }
         }
       }
       else {
         toast(data.msg, "danger");
-        resolve(data)
       }
+      resolve(data)
     }).catch(res => {
       reject(res);
     })

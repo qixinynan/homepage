@@ -1,15 +1,10 @@
-'use client'
 import NavItem from './nav-item'
 import Avatar from '../common/avatar'
-import MenuIcon from './menu-icon'
-import { useEffect, useState } from 'react'
-import MobileMenu from './mobile-menu'
-import { isLogined } from '@/app/common/utils'
 import { tryGetCurrentUser } from '@/app/api/accounts'
+import MobileHeader from './mobile-header'
 
 
-export default function Header() {
-  const [showMobileMenu, setShowMobileMenu] = useState(false)
+export default async function Header() {
   const headerData = [
     {
       name: "首页",
@@ -29,22 +24,12 @@ export default function Header() {
     },
   ]
 
-  const [accountName, setAccountName] = useState("点击登录");
-
-  useEffect(() => {
-    window.addEventListener('hashchange', () => setShowMobileMenu(location.hash === "#menu"))
-    tryGetCurrentUser().then(user => setAccountName(user.data.username));
-  }, [])
-
-  const closeMenu = () => {
-    setShowMobileMenu(false)
-    location.hash = "";
-  }
+  const res = await tryGetCurrentUser();
+  const accountName = res.code == 200 ? res.data.username : "请登录";
 
   return (
     <header className='relative flex flex-row items-center justify-center bg-slate-800 text-gray-50'>
-      <MobileMenu active={showMobileMenu} onClose={closeMenu} data={headerData}></MobileMenu>
-      <MenuIcon onClick={() => setShowMobileMenu(true)} className='absolute left-5 sm:hidden' fill={'hsl(224, 7.2%, 40%)'} />
+      <MobileHeader headerData={headerData}></MobileHeader>
       <nav className='inline-flex py-3 px-5 space-x-16'>
         <a href='/' className='inline-flex items-center space-x-2 group'>
           <Avatar className="group-hover:border-2 border-gray-300" size={32}></Avatar>

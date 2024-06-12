@@ -1,5 +1,6 @@
 import reuqest, { del, get, post, put } from "@/app/common/request";
 
+
 export async function registerUser(username, password) {
   const res = await post(`/accounts/`, {
     body: {
@@ -26,9 +27,5 @@ export async function loginUser(username, password) {
       password
     }
   })
-  if (res.code == 200 && res.data) {
-    console.log("Local storaged user data")
-    localStorage.setItem("token", res.data)
-  }
   return res;
 }

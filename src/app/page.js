@@ -4,7 +4,6 @@ import ShowMenu from "./components/show-menu"
 import Comment from "./comment/comment";
 import Like from "./home/like";
 import H2 from "./components/common/h2";
-import Card from "./components/common/card";
 import CardButton from "./components/common/card-btn";
 export default function Home() {
   return (<div>

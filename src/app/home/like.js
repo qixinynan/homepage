@@ -12,12 +12,20 @@ export default function Like() {
   useEffect(() => {
     getLikeCount();
   }, [])
-  return <Button className="block mx-auto my-10" color="pink" onClick={() => {
+  const clickLike = () => {
     confetti({
       particleCount: 150,
       spread: 60
     });
     like();
     setLikeCount(likeCount + 1);
-  }}>❤️{likeCount} 点赞👍</Button>
+  }
+  return <Button className="flex mx-auto my-10" color="pink" onClick={clickLike}>
+    ❤️
+    {(likeCount != undefined) ? (
+      likeCount
+    ) : (
+      <div className="inline-block animate-pulse h-6 bg-gray-100 opacity-25 rounded w-8 mx-1" />
+    )}
+    <span className="ml-2">点赞👍</span></Button >
 }

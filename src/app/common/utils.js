@@ -1,3 +1,6 @@
+import ReactCookies from 'react-cookies'
+import { cookies } from 'next/dist/client/components/headers';
+import { getCurrentUser } from '../api/accounts';
 export function formatDate(dateString) {
   const date = new Date(dateString);
   return getTimeString(date.valueOf())
@@ -27,10 +30,13 @@ export function isClient() {
  */
 export function isLogined() {
   if (!isClient()) {
-    return false;
+    return cookies().get('token') ? true : false;
   }
-  if (localStorage.getItem('token')) {
-    return true;
-  }
-  return false;
+  return ReactCookies.load('token') ? true : false;
+}
+
+export async function isAdmin() {
+  const res = await getCurrentUser()
+  if (res.code != 200) return false
+  return res.data.role == "ADMIN"
 }
