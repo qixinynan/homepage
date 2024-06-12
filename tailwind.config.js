@@ -14,6 +14,9 @@ module.exports = {
       },
       fontFamily: {
         sans: ['var(--font-noto)']
+      },
+      fontWeight: {
+        bold: "500"
       }
     },
   },
