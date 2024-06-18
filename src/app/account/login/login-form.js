@@ -3,7 +3,6 @@ import Input from "@/app/components/common/input";
 import Button from "@/app/components/common/button";
 import Link from "@/app/components/common/link";
 import { loginUser } from "@/app/api/accounts";
-import { useRouter } from 'next/navigation'
 import { useState } from "react"
 import cookies from 'react-cookies'
 import toast from "@/app/common/toast";
@@ -11,7 +10,6 @@ import toast from "@/app/common/toast";
 export default function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const router = useRouter()
   const login = async () => {
     if (!username || !password) {
       toast("请填写账号与密码", "warning");
@@ -23,7 +21,7 @@ export default function LoginForm() {
         cookies.save('token', res.data.token, {
           path: '/', maxAge: 1000000
         })
-        router.push("/")
+        location.href = "/"
       }
     }
   }

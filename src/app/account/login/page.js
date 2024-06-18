@@ -6,7 +6,6 @@ export default function Login() {
 
 
   const token = cookies().get('token');
-  // 如果存在token，则重定向到账号页面
   if (token) {
     redirect('/account');
   }

@@ -8,9 +8,6 @@ export default function Button({ children, className, onClick, color }) {
     case 'pink':
       colorStyle = "bg-red-400"
       break
-    case 'transparent':
-      colorStyle = "bg-transparent border border-blue-400 text-blue-400 shadow-none"
-      break
     default:
       colorStyle = "bg-neutral-700";
   }

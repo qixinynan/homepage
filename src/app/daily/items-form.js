@@ -8,6 +8,7 @@ import TextArea from '../components/common/textarea';
 import Button from '../components/common/button';
 import toast from '../common/toast';
 import DailyItemCard from './daily-item-card';
+import OutlineButton from '../components/common/outline-btn';
 
 export default function DailyItemForm() {
   const [items, setItems] = useState([]);
@@ -57,10 +58,10 @@ export function DailyItemEditor({ onPost }) {
       <H2>事项</H2>
       <div className="flex items-center">
         <div onClick={() => setShowDescriptionField(!showDescriptionField)}>
-          <ExpandIcon className={`${!showDescriptionField && '-rotate-90'} mr-2`} />
+          <ExpandIcon className={`${!showDescriptionField && '-rotate-90'}`} />
         </div>
-        <UnderlineInput value={content} onChange={(e) => setContent(e.target.value)} placeHolder="内容" />
-        <Button onClick={clickPostDailyItem} color="transparent" className="w-20 mx-5">提交</Button>
+        <UnderlineInput className="mx-2" value={content} onChange={(e) => setContent(e.target.value)} placeHolder="内容" />
+        <OutlineButton onClick={clickPostDailyItem} className="w-20">提交</OutlineButton>
       </div>
       {showDescriptionField && (
         <TextArea value={description} onChange={(e) => setDescription(e.target.value)} className="mt-2" placeHolder='描述' />
