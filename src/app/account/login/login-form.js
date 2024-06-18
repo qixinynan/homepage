@@ -19,8 +19,8 @@ export default function LoginForm() {
     else {
       const res = await loginUser(username, password);
       if (res.code == 200) {
-        console.log(res.data);
-        cookies.save('token', res.data, {
+        console.log(res.data.token);
+        cookies.save('token', res.data.token, {
           path: '/', maxAge: 1000000
         })
         router.push("/")

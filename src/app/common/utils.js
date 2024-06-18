@@ -40,3 +40,7 @@ export async function isAdmin() {
   if (res.code != 200) return false
   return res.data.role == "ADMIN"
 }
+
+export function isEmptyObject(obj) {
+  return Object.keys(obj).length === 0 && obj.constructor === Object;
+}

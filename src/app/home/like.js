@@ -7,7 +7,7 @@ export default function Like() {
   const [likeCount, setLikeCount] = useState();
   const getLikeCount = async () => {
     const likeData = await getLike();
-    setLikeCount(likeData.data)
+    setLikeCount(likeData.data.value)
   }
   useEffect(() => {
     getLikeCount();

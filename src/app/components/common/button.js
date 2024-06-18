@@ -8,12 +8,15 @@ export default function Button({ children, className, onClick, color }) {
     case 'pink':
       colorStyle = "bg-red-400"
       break
+    case 'transparent':
+      colorStyle = "bg-transparent border border-blue-400 text-blue-400 shadow-none"
+      break
     default:
       colorStyle = "bg-neutral-700";
   }
-  return <button onClick={onClick} className={`mt-5 rounded-md
-                  ${colorStyle} px-3 py-1.5 text-sm
+  return <button onClick={onClick} className={`rounded-md
+                  px-3 py-1.5 text-sm
                   font-semibold leading-6 text-white shadow-sm
                   hover:opacity-80 active:opacity-90 focus-visible:outline focus-visible:outline-2
-                  focus-visible:outline-offset-2 ${className}`}>{children}</button>
+                  focus-visible:outline-offset-2  ${colorStyle} ${className}`}>{children}</button>
 }

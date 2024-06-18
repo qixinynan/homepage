@@ -1,6 +1,5 @@
 import Card from "../../app/components/common/card";
 import TextMd from "../../app/components/common/text-md";
-import Image from "next/image";
 import Link from "../components/common/link";
 
 export default function ProjectsCard({ title, desc, cover, link }) {
