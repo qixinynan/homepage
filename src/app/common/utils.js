@@ -42,5 +42,9 @@ export async function isAdmin() {
 }
 
 export function isEmptyObject(obj) {
+  if (Array.isArray(obj) && obj.length === 0) {
+    return true;
+  }
+
   return Object.keys(obj).length === 0 && obj.constructor === Object;
 }

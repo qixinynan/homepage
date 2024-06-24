@@ -1,6 +1,8 @@
 import reuqest, { del, get, post, put } from "@/app/common/request";
-export async function getTodayDaily() {
-  const res = await get('/dailies/today')
+import moment from "moment";
+export async function getDaily(date) {
+  const dateString = moment(date).format("YYYYMMDD")
+  const res = await get(`/dailies/${dateString}`)
   return res;
 }
 
@@ -15,8 +17,9 @@ export async function postDaily(title, description, score) {
   return res;
 }
 
-export async function getTodayDailyItems() {
-  const res = await get('/dailies/items')
+export async function getDailyItems(date) {
+  const dateString = moment(date).format("YYYYMMDD")
+  const res = await get(`/dailies/items/${dateString}`)
   return res;
 }
 

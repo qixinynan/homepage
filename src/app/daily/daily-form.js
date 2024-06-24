@@ -29,6 +29,7 @@ export default function DailyForm({ data }) {
 }
 
 function DailyView({ data }) {
+  console.log(data)
   return (<div className="border rounded p-5">
     <Rate score={data.score}></Rate>
     <p className="text-slate-900 font-bold text-lg">{data.title}</p>

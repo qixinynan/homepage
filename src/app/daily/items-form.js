@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react';
-import { deleteDailyItem, getTodayDailyItems, postDailyItem } from "../api/daily"
+import { deleteDailyItem, getDailyItems, getTodayDailyItems, postDailyItem } from "../api/daily"
 import H2 from "../components/common/h2";
 import UnderlineInput from "../components/common/underline-input";
 import ExpandIcon from "./expand-icon";
@@ -10,11 +10,11 @@ import toast from '../common/toast';
 import DailyItemCard from './daily-item-card';
 import OutlineButton from '../components/common/outline-btn';
 
-export default function DailyItemForm() {
-  const [items, setItems] = useState([]);
+export default function DailyItemForm({ data }) {
+  const [items, setItems] = useState(data);
 
   const fetchItems = async () => {
-    const data = await getTodayDailyItems();
+    const data = await getDailyItems(new Date());
     setItems(data.data);
   };
 
@@ -23,7 +23,6 @@ export default function DailyItemForm() {
     await fetchItems()
   }
 
-  useEffect(() => { fetchItems() }, []);
   return (<div>
     <DailyItemEditor onPost={fetchItems}></DailyItemEditor>
     <div className="space-y-2 mt-2">
