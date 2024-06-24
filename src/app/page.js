@@ -1,4 +1,4 @@
-import Intro from "./about/intro"
+import Intro from "./home/intro"
 import Link from "./components/common/link"
 import ShowMenu from "./components/show-menu"
 import Comment from "./comment/comment";
