@@ -54,7 +54,7 @@ function BlogAdmin() {
     await postBlog(title, content);
     toast("发布成功");
   }
-  return (<section className="mt-10">
+  return (<section className="root mt-10">
     <H2>博客管理</H2>
     <div>
       <label>标题：</label>

@@ -13,7 +13,7 @@ export default async function Account() {
   const userData = res.data;
 
   return (
-    <Container classname="space-y-3">
+    <Container classname="root space-y-3">
       <H2>个人资料</H2>
       <p>用户名：{userData.username}</p>
       <p>注册日期：{userData.createdAt}</p>

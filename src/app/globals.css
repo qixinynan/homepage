@@ -2,5 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-.body {
+.body {}
+
+@import url(markdown.css);
+
+.root {
+  @apply mx-auto max-w-3xl
 }

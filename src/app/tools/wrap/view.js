@@ -8,7 +8,7 @@ import { useState } from "react";
 export default function WrapView() {
   const [url, setUrl] = useState("")
   const [result, setResult] = useState("")
-  return <div className="max-w-md mx-auto block mt-10 space-y-10">
+  return <div className="root max-w-md mx-auto block mt-10 space-y-10">
     <H2>跳转URL生成</H2>
     <div className="flex space-x-2 items-center">
       <label>URL:</label>

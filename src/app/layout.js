@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
       <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
       <body className={`${notosc.className} ${notosc.variable} body`}>
         <Header />
-        <div className='mx-auto max-w-3xl'>
+        <div >
           {children}
         </div>
         <Footer />

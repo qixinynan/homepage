@@ -26,7 +26,7 @@ export function ArchivesView() {
   useEffect(() => {
     fetchArchieves();
   }, [])
-  return (<div className="space-y-3 mx-10 mt-3">
+  return (<div className="root space-y-3 mx-10 mt-3">
     <Rate active={showRate} data={archives[selectedId]} onRate={fetchArchieves} onClose={() => setShowRate(false)}></Rate>
     <Add active={showAdd} onClose={() => setShowAdd(false)} ></Add>
     <Editor active={showEditor} data={archives[selectedId]} onClose={() => { setShowEditor(false); setSelectedId(-1) }}></Editor>

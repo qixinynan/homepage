@@ -1,0 +1,28 @@
+.markdown h1 {
+  font-size: 1.8em;
+  /* 修改h1的字体大小为24像素 */
+}
+
+.markdown h2 {
+  font-size: 1.5em;
+  /* 修改h2的字体大小为20像素 */
+}
+
+.markdown h3 {
+  font-size: 1.17em;
+  /* 修改h2的字体大小为20像素 */
+}
+
+.markdown h4 {
+  font-size: 1em;
+  /* 修改h2的字体大小为20像素 */
+}
+
+.markdown h5 {
+  font-size: 0.83em;
+  /* 修改h2的字体大小为20像素 */
+}
+
+.markdown h6 {
+  font-size: 0.67em;
+}

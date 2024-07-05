@@ -3,7 +3,7 @@ import { isAdmin } from "../common/utils";
 import { AdminView } from "./view";
 
 export default function Admin() {
-  if (isAdmin) {
+  if (isAdmin()) {
     return <AdminView></AdminView>
   }
   else {

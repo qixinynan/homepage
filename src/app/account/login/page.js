@@ -10,7 +10,7 @@ export default function Login() {
     redirect('/account');
   }
 
-  return (<div className="mt-5">
+  return (<div className="root mt-5">
     <H2 className="text-center">登录</H2>
     <p className="text-center text-sm">放心，你的账号凭证是完全安全的！</p>
     <LoginForm></LoginForm>

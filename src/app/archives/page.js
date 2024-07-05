@@ -3,7 +3,7 @@ import { isAdmin } from "../common/utils";
 import { ArchivesView } from "./view";
 
 export default function Archives() {
-  if (!isAdmin) {
+  if (!isAdmin()) {
     redirect("/account");
   }
   return <ArchivesView></ArchivesView>
