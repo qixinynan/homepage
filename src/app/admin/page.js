@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { isAdmin } from "../common/utils";
-import { AdminView } from "./view";
+import AdminView from "./view";
 
 export default function Admin() {
   if (isAdmin()) {

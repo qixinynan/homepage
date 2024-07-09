@@ -11,7 +11,42 @@ import CardButton from "../components/common/card-btn";
 import { postBlog } from "../api/blog";
 import Link from "../components/common/link";
 import toast from "../common/toast";
-export function AdminView() {
+import Container from "../components/common/container";
+import { postActivities } from "../api/activities";
+
+export default function AdminView() {
+  return (
+    <Container className="mt-5 space-y-5">
+        <ActivitiesAdmin></ActivitiesAdmin>
+        <BlogAdmin></BlogAdmin>
+        <CommentAdmin></CommentAdmin>
+    </Container>
+  )
+}
+
+export function ActivitiesAdmin() {
+  const [content, setContent] = useState("");
+  const [description, setDescription] = useState("");
+  const clickPostActivity = async () => {
+    const res = await postActivities(content, description);
+    if (res.code == 200) {
+      toast("成功");
+    }
+    else {
+      toast("失败")
+    }
+  }
+  return (
+    <section>
+      <H2>动态</H2>
+      <Input onChange={(e) => {setContent(e.target.value)}} value={content} className="w-full" placeHolder="内容"></Input> 
+      <Input onChange={(e) => {setDescription(e.target.value)}} value={description} className="w-full" placeHolder="描述"></Input>
+      <CardButton onClick={clickPostActivity}>添加</CardButton>
+    </section>
+  )
+}
+
+export function CommentAdmin() {
   const [comments, setComments] = useState([])
   const fetchComments = async () => {
     const res = await getComments();
@@ -28,10 +63,7 @@ export function AdminView() {
     await fetchComments();
   }
 
-  return <div className="mt-5 space-y-5">
-    <section>
-      <Link href="/archives">档案</Link>
-    </section>
+  return (
     <section>
       <H2>评论管理</H2>
       {comments.map((comment, i) => (
@@ -43,8 +75,7 @@ export function AdminView() {
         </Card>
       ))}
     </section>
-    <BlogAdmin></BlogAdmin>
-  </div>
+  )
 }
 
 function BlogAdmin() {

@@ -1,7 +1,9 @@
 import Avatar from "../components/common/avatar";
+import H2 from "../components/common/h2";
 import SpanCard from "../components/common/span-card";
 import TextMd from "../components/common/text-md";
 import DescribeCard from "./describe-card";
+import Now from "./now";
 
 export default function Intro() {
   return (
@@ -29,12 +31,15 @@ export default function Intro() {
           很开心诸位能更了解伟大的七夕泥一分！
         </TextMd>
       </div>
+      <Now></Now>
+      <H2>属性</H2>
       <DescribeCard title="涉猎">看番、漫画、玩游戏、写代码做些杂七杂八的东西、ACGN系列音乐、哔哩哔哩 乾杯- ( ゜- ゜)つロ！
       </DescribeCard>
       <DescribeCard title="雷点">三观正常、小孩表情包、太抽象的乐子人、认识以后乱删人/拉黑、恶心已读不回，对热情不回应</DescribeCard>
       <DescribeCard title="动漫">特别喜欢日常番\音乐番，孤独摇滚！轻音少女、中二病也要谈恋爱之类的特别喜欢！</DescribeCard>
       <DescribeCard title="最喜欢的音乐">
-        <iframe frameborder="no" border="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=32431066&auto=1&height=66" />
+        {/* <iframe frameborder="no" border="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=32431066&auto=1&height=66" /> */}
+        《神的随波逐流》
       </DescribeCard>
       <DescribeCard title="游戏">
         <p>P社系列（钢铁雄心、欧陆风云、十字军之王3）、文明6之类的策略游戏游戏</p>
