@@ -2,8 +2,8 @@
 import Button from "@/app/components/common/button";
 import H2 from "@/app/components/common/h2";
 import Input from "@/app/components/common/input";
-import Markdown from "@/app/components/common/markdown";
 import TextArea from "@/app/components/common/textarea";
+import Markdown from "react-markdown";
 import UnderlineInput from "@/app/components/common/underline-input";
 import { useState } from "react";
 import { postBlog } from "../../api/blog";
@@ -32,7 +32,9 @@ export default function PostBlogView() {
         <div className="w-1/2 bg-white p-4 ml-4">
           <H2 classNameName="border-b">预览：</H2>
           <h1 style={{ fontSize: 1.8 + 'em' }}>{title != '' ? title : "请先输入标题"}</h1>
-          <Markdown content={content}></Markdown>
+          <div id="markdown" class="markdown-body">
+            <Markdown id="markdown">{content}</Markdown>
+          </div>
         </div>
       </div>
     </div>

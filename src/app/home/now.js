@@ -21,10 +21,10 @@ export default function Now() {
       {(activity != undefined) ? (
       <ActivityCard title={activity.content} time={getTimeString(activity.updatedAt)} desc={activity.description}></ActivityCard>
     ) : (
-      <div class="animate-pulse w-full max-w-xl flex space-x-2">
-        <div class="rounded flex-1 bg-gray-300 h-4"></div>
-        <div class="w-1"></div>
-        <div class="rounded flex-1 bg-gray-300 h-4"></div>
+      <div className="animate-pulse w-full max-w-xl flex space-x-2">
+        <div className="rounded flex-1 bg-gray-300 h-4"></div>
+        <div className="w-1"></div>
+        <div className="rounded flex-1 bg-gray-300 h-4"></div>
       </div>
       )}
     </div>

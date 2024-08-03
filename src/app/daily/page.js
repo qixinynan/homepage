@@ -8,6 +8,7 @@ import { redirect, useSearchParams } from "next/navigation";
 import Button from "../components/common/button";
 import DateInput from "./date-input";
 import moment from "moment";
+import DailyAll from "./daily-all";
 
 export default async function Daily({ searchParams }) {
   if (!(await isAdmin())) {
@@ -24,6 +25,7 @@ export default async function Daily({ searchParams }) {
     <DateInput defaultValue={searchParams.date}></DateInput>
     <DailyForm data={daily.data}></DailyForm>
     <DailyItemForm data={items.data}></DailyItemForm>
+    <DailyAll></DailyAll>
   </Container>)
 }
 
