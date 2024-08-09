@@ -11,6 +11,10 @@ export async function nowActivities() {
   return res;
 }
 
+export async function likeActivities(id) {
+  const res = await post(`/activities/${id}/like`)
+}
+
 export async function postActivities(content, desc) {
   const res = await post(`/activities/`, {
     body: {

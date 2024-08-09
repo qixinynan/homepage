@@ -1,10 +1,17 @@
-import H3 from "./common/h3";
+'use client';
 import Card from "./common/card";
 import TextMd from "./common/text-md";
+import { likeActivities } from "../api/activities";
+import {useState} from 'react';
 
-export default function ActivityCard({ time, title, desc, onClick, className }) {
+export default function ActivityCard({ id, time, title, desc, like, className }) {
+  const onCardClick = async () => {
+    await likeActivities(id);
+    setLikeNumber(likeNumber + 1);
+  }
+  const [likeNumber, setLikeNumber] = useState(like);
   return (
-    <Card onClick={onClick} className={className}>
+    <Card onClick={onCardClick} className={`${className} flex justify-between`}>
       <TextMd>
         <span className="">{time}, </span>
         <span className="font-bold">{title}</span>
@@ -15,6 +22,7 @@ export default function ActivityCard({ time, title, desc, onClick, className }) 
           </>
         }
       </TextMd>
+      <p className="mr-3 text-sm">❤️ {likeNumber}</p>
       {/* <div className="mt-5 text-xs">回复：
         <p className="indent-5">
           <span className="text-blue-500">匿名人士</span>

@@ -25,31 +25,15 @@ export default function Intro() {
       </div>
       <div>
         <TextMd>
-          大家好，欢迎在这里认识七夕泥2.0 七夕泥正在广泛勾结团伙，并制作了这个页面浅浅展示自己（）
+          这里是新七夕泥！喜欢各种没有用的东西，可能就是如此所以做了这么一个没有用的网站吗？这里可能有一些我的文章、项目、还有大家的评论？
         </TextMd>
         <TextMd>
           很开心诸位能更了解伟大的七夕泥一分！
         </TextMd>
       </div>
       <Now></Now>
-      <H2>属性</H2>
-      <DescribeCard title="涉猎">看番、漫画、玩游戏、写代码做些杂七杂八的东西、ACGN系列音乐、哔哩哔哩 乾杯- ( ゜- ゜)つロ！
+      <DescribeCard title="爱好">看番、漫画、玩游戏、写代码做些杂七杂八的东西、ACGN系列音乐、哔哩哔哩 乾杯- ( ゜- ゜)つロ！
       </DescribeCard>
-      <DescribeCard title="动漫">特别喜欢日常番\音乐番，孤独摇滚！轻音少女、中二病也要谈恋爱之类的特别喜欢！</DescribeCard>
-      <DescribeCard title="最喜欢的音乐">
-        {/* <iframe frameborder="no" border="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=32431066&auto=1&height=66" /> */}
-        《神的随波逐流》
-      </DescribeCard>
-      <DescribeCard title="游戏">
-        <p>P社系列（钢铁雄心、欧陆风云、十字军之王3）、文明6之类的策略游戏游戏</p>
-        <p>沙盒生存游戏：例如Minecraft、泰拉瑞亚、Rimworld</p>
-        <p>正在尝试怪物猎人但真的好难诶</p>
-      </DescribeCard>
-      <DescribeCard title="技术力！">
-        <p>做网站和游戏都比较擅长、Java、JavaScript、C#都比较熟练、C/C++、Rust、Go属于能凑合用</p>
-        <p>React、</p>
-      </DescribeCard>
-
     </section >
   );
 }

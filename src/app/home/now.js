@@ -19,7 +19,7 @@ export default function Now() {
         七夕泥目前正在:
       </p>
       {(activity != undefined) ? (
-      <ActivityCard title={activity.content} time={getTimeString(activity.updatedAt)} desc={activity.description}></ActivityCard>
+      <ActivityCard id={activity.id} title={activity.content} time={getTimeString(activity.updatedAt)} desc={activity.description} like={activity.like}></ActivityCard>
     ) : (
       <div className="animate-pulse w-full max-w-xl flex space-x-2">
         <div className="rounded flex-1 bg-gray-300 h-4"></div>

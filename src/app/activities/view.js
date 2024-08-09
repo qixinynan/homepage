@@ -20,7 +20,7 @@ export default function ActivityView() {
       <H2>七夕泥的动态</H2>
       <div className="space-y-3">
         {activities.map((e, i) => (
-          <ActivityCard key={i} title={e.content} time={getTimeString(e.createdAt)} desc={e.description}></ActivityCard>)
+          <ActivityCard key={i} id={e.id} title={e.content} time={getTimeString(e.createdAt)} desc={e.description} like={e.like}></ActivityCard>)
         )}
       </div>
     </section>
