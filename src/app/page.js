@@ -20,7 +20,11 @@ export default function Home() {
           {`跳转URL生成 >`}
         </CardButton>
       </a>
-
+      <a href="/download/鼠标测试专业版.7z">
+        <CardButton>
+          {`下载鼠标测试专业版 >`}
+        </CardButton>
+      </a>
     </section>
     <ShowMenu>
       <Link className="mt-10 ml-4">查看更多</Link>
